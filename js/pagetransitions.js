@@ -50,8 +50,8 @@ $(document).ready(function() {
 			$toPage.attr('class', 'page-current page moveFromTop');
 			current = pageNum;
 		}
-		$('body').find("#".concat(pageNum - $automaticLength)).addClass("selected");
 		$('body').find("#".concat(oldCurrent - $automaticLength)).removeClass("selected");
+		$('body').find("#".concat(pageNum - $automaticLength)).addClass("selected");
 
 	});
 

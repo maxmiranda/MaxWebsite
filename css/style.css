@@ -16,18 +16,20 @@ nav {
   position: fixed;
   visibility: hidden;
   display: flex;
-  width: 30%;
   justify-content: center;
   align-items: center;
-  margin-left: 5%;
 }
+
 ul {
   margin-bottom: 15%;
   list-style-type: none;
 }
 
 .nav-container {
+  width: 27%;
   height: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 nav li {
   font-size: 16px;
@@ -46,20 +48,20 @@ nav li:hover {
 
 body {
   font-family: 'Montserrat';
+  background-color: #FAFAFA;
 }
 
 .page {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
 	height: 100%;
   position: absolute;
   overflow: hidden;
   visibility: hidden;
   transform: translate3d(0, 0, 0);
   transform-style: preserve-3d;
-  background-color: #FAFAFA;
 }
 
 .page-current {
@@ -92,6 +94,96 @@ body {
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 50px;
   font-family: 'Montserrat';
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.subpage {
+  flex-direction: column;
+  width: 550px;
+  margin-left: 50px;
+  margin-top: 90px;
+}
+
+.about .content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.content p {
+  margin-left: 30px;
+  line-height: 2;
+  font-weight: 500;
+}
+
+.icons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 30px;
+}
+.icons a {
+  z-index: 3;
+}
+.icons a li {
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  height: 70px;
+  font-size: 35px;
+  width: 70px;
+  border: solid 2px black;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 70px;
+}
+
+.icons a:hover li {
+  background-color: #969696;
+}
+
+.icons a:first-child li {
+  font-size: 45px;
+}
+
+.box  {
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  width: 100%;
+  height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 55px;
+}
+.box:hover {
+  cursor: pointer;
+}
+.box:first-child:hover {
+  background-color: rgba(51, 51, 51, 0.5);
+}
+.box:nth-child(2):hover {
+  background-color: rgba(0, 0, 0, .6);
+}
+.box:nth-child(3):hover {
+  background-color: rgba(21, 138, 221, .5);
+}
+.blockchain {
+  background-color: #333333;
+}
+
+.utility {
+  background-color: black;
+}
+
+.msssv {
+  background-color: #158ADD;
 }
