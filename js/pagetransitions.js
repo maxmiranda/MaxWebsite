@@ -7,22 +7,52 @@ $(document).ready(function() {
 	var $currPage = $pages.eq( current );
 	var $automaticLength = $main.children('div.automatic').length;
 
-	$currPage.addClass( 'page-current' );// needs to be done automatically
+	$currPage.addClass( 'page-current' );
 
 	var $nextPage = $pages.eq(current + 1);
 
-	function myLoop () {           //  create a loop function
-	   setTimeout(function () {    //  call a 3s setTimeout when the loop is called
-			 $currPage.addClass("moveToTop");
+	/*Auto changes */
+	function myLoop () {
+		 setTimeout(function () {
+			 $currPage.find('p').addClass('strikethrough');
+		 }, 1000)
+	   setTimeout(function () {
+			 $currPage.addClass('moveToTop');
 			 $nextPage.addClass('page-current');
-			 $nextPage.addClass("moveFromBottom");
+			 $nextPage.addClass('moveFromBottom');
 			 $currPage = $pages.eq(current +1);
 			 current++;
- 			 $nextPage = $pages.eq(current);                   //  increment the counter
-	     if (current <= $automaticLength) {            //  if the counter < 10, call the loop function
-	         myLoop();             //  ..  again which will trigger another
-	     }                        //  ..  setTimeout()
+ 			 $nextPage = $pages.eq(current + 1);
+	     if (current < $automaticLength) {
+	         myLoop();
+	     } else {
+				 $('nav').addClass('nav-anim');
+				 $('nav li:first-child').addClass('selected');
+				 current = $automaticLength;
+			 }
 	   }, 2000)
 	}
 	myLoop();
+
+
+	/* Menu changes */
+	$("nav li").click(function(event) {
+		var oldCurrent = current;
+		var pageNum = parseInt(event.target.id) + $automaticLength;
+		$currPage = $pages.eq(current);
+		$toPage = $pages.eq(pageNum);
+		if (pageNum > current) {
+			$currPage.attr('class', 'page-current page moveToTop');
+			$toPage.attr('class', 'page-current page moveFromBottom');
+			current = pageNum;
+		} else if (pageNum < current) {
+			$currPage.attr('class', 'page-current page moveToBottom');
+			$toPage.attr('class', 'page-current page moveFromTop');
+			current = pageNum;
+		}
+		$('body').find("#".concat(pageNum - $automaticLength)).addClass("selected");
+		$('body').find("#".concat(oldCurrent - $automaticLength)).removeClass("selected");
+
+	});
+
 });

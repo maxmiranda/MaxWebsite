@@ -2,12 +2,42 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: #141414
 }
 
+a {
+  color: #141414;
+  text-decoration: none;
+
+}
+
+nav {
+  height: 100%;
+  position: fixed;
+  visibility: hidden;
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+}
+ul {
+  margin-bottom: 15%;
+  list-style-type: none;
+}
+
+.nav-container {
+  height: 100%;
+}
 nav li {
-  font-size: 20px;
-  font-family: Montserrat;
+  font-size: 16px;
+  font-family: 'Montserrat';
   margin-top: 24px;
+}
+
+nav li:hover {
+  cursor: pointer;
+  color: #287AA0;
 }
 
 .selected {
@@ -15,7 +45,7 @@ nav li {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Montserrat';
 }
 
 .page {
@@ -59,4 +89,9 @@ body {
   display: block;
   box-shadow: 0px 2px 4px 0px #585858;
   height: 100%;
+}
+
+h1 {
+  font-size: 60px;
+  font-family: 'Montserrat';
 }
