@@ -41,15 +41,22 @@ $(document).ready(function() {
 	$("nav li, .box").click(function(event) {
 		var subpageNum = parseFloat(event.target.id) - 1;
 		var pageNum = Math.floor(subpageNum);
+		var currIsSide = false;
 		if (subpageNum == pageNum) {
 			$('.submenu').removeClass("visible");
-			if (current != subpageNum && Math.floor(current) == subpageNum) {
+			if (current != subpageNum && Math.floor(current) == subpageNum) { // if clicking back to third page (Work) menu
 				$currPage = $sides.eq(Math.round(10 * (current - pageNum) - 1));
 				$toPage = $pages.eq(subpageNum);
 				$currPage.attr('class', 'page-current page moveToRight');
 				$toPage.attr('class', 'page-current side page moveFromLeft');
 			} else {
-					$currPage = $pages.eq(current);
+					if (Math.floor(current) != current) {
+						$currPage = $sides.eq(Math.round(10 * (current % 1) - 1));
+						currIsSide = true;
+					} else {
+						$currPage = $pages.eq(current);
+						currIsSide = false;
+					}
 					$toPage = $pages.eq(subpageNum);
 					if (pageNum > current) {
 						$currPage.attr('class', 'page-current page moveToTop');
@@ -59,17 +66,18 @@ $(document).ready(function() {
 						$toPage.attr('class', 'page-current page moveFromTop');
 					}
 			}
+			$("#".concat(current + 1)).removeClass("selected"); // not working for the submenu, the hidden content
+			$("#".concat(subpageNum + 1)).addClass("selected");
 		} else {
+				$('.submenu').addClass("visible");
 				if (Math.floor(current) != current) {
 					$currPage = $sides.eq(Math.round(10 * (current - pageNum) - 1));
-					var currIsSide = true;
+					currIsSide = true;
 				} else {
 					$currPage = $pages.eq(current);
-					var currIsSide = false;
+					currIsSide = false;
 				}
-				$toPage = $sides.eq(Math.round(10 * (subpageNum - pageNum) - 1));
-				$('.submenu').addClass("visible");
-				var index = Math.round(10 * (subpageNum - pageNum) -1);
+				var index = Math.round(10 * (subpageNum % 1) -1);
 				$toPage = $sides.eq(index);
 				if (subpageNum > current) {
 					$currPage.attr('class', 'page-current page moveToLeft');
@@ -78,13 +86,11 @@ $(document).ready(function() {
 					$currPage.attr('class', 'page-current page moveToRight');
 					$toPage.attr('class', 'page-current side page moveFromLeft');
 				}
-				if (currIsSide) {
-					$currPage.addClass('side');
-				}
 			}
-		$main.find("#".concat(current + 1)).removeClass("selected");
-		$main.find("#".concat(subpageNum + 1)).addClass("selected");
-		current = subpageNum;
+			if (currIsSide) {
+				$currPage.addClass('side');
+			}
+			current = subpageNum;
 		});
 
 });
