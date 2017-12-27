@@ -1,16 +1,16 @@
 $(document).ready(function() {
 
 	var $main = $('body');
-	var $pages = $main.children( 'div.page' ).not('.side');
-	var pagesCount = $pages.length;
+	var $allpages = $main.children( 'div.page' ).not('.side');
 	var current = 0;
-	var $currPage = $pages.eq( current );
+	var $currPage = $allpages.eq( current );
 	var $automaticLength = $main.children('div.automatic').length;
 	var $sides = $main.children('div.side');
+	var $pages = $main.children( 'div.page' ).not('.side').not('.automatic');
 
 	$currPage.addClass( 'page-current' );
 
-	var $nextPage = $pages.eq(current + 1);
+	var $nextPage = $allpages.eq(current + 1);
 
 	/*Auto changes */
 	function myLoop () {
@@ -21,15 +21,15 @@ $(document).ready(function() {
 			 $currPage.addClass('moveToTop');
 			 $nextPage.addClass('page-current');
 			 $nextPage.addClass('moveFromBottom');
-			 $currPage = $pages.eq(current +1);
+			 $currPage = $allpages.eq(current +1);
 			 current++;
- 			 $nextPage = $pages.eq(current + 1);
+ 			 $nextPage = $allpages.eq(current + 1);
 	     if (current < $automaticLength) {
 	         myLoop();
 	     } else {
 				 $('nav').addClass('nav-anim');
 				 $('nav li:first-child').addClass('selected');
-				 current = $automaticLength;
+				 current = 0;
 			 }
 	   }, 3000)
 	}
@@ -39,13 +39,13 @@ $(document).ready(function() {
 /* Menu changes */
 
 	$("nav li, .box").click(function(event) {
-		var subpageNum = parseFloat(event.target.id) + $automaticLength;
+		var subpageNum = parseFloat(event.target.id) - 1;
 		var pageNum = Math.floor(subpageNum);
 		if (subpageNum == pageNum) {
 			$('.submenu').removeClass("visible");
-			if (current != pageNum && pageNum == Math.floor(current)) {
+			if (current != subpageNum && Math.floor(current) == subpageNum) {
 				$currPage = $sides.eq(Math.round(10 * (current - pageNum) - 1));
-				$toPage = $page.eq(subpageNum);
+				$toPage = $pages.eq(subpageNum);
 				$currPage.attr('class', 'page-current page moveToRight');
 				$toPage.attr('class', 'page-current side page moveFromLeft');
 			} else {
@@ -82,8 +82,8 @@ $(document).ready(function() {
 					$currPage.addClass('side');
 				}
 			}
-		$main.find("#".concat(current - $automaticLength)).removeClass("selected");
-		$main.find("#".concat(subpageNum - $automaticLength)).addClass("selected");
+		$main.find("#".concat(current + 1)).removeClass("selected");
+		$main.find("#".concat(subpageNum + 1)).addClass("selected");
 		current = subpageNum;
 		});
 
