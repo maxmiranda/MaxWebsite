@@ -39,6 +39,58 @@
 }
 /*Move to Top */
 
+.moveToLeft {
+	-webkit-animation: moveToLeft 1s ease both;
+	animation: moveToLeft 1s ease both;
+}
+
+.moveFromLeft {
+	-webkit-animation: moveFromLeft 1s ease both;
+	animation: moveFromLeft 1s ease both;
+}
+
+.moveToRight {
+	-webkit-animation: moveToRight 1s ease both;
+	animation: moveToRight 1s ease both;
+}
+
+.moveFromRight {
+	-webkit-animation: moveFromRight 1s ease both;
+	animation: moveFromRight 1s ease both;
+}
+
+@-webkit-keyframes moveToLeft {
+	from { }
+	to { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveToLeft {
+	from { }
+	to { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webkit-keyframes moveFromLeft {
+	from { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveFromLeft {
+	from { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webkit-keyframes moveToRight {
+	from { }
+	to { -webkit-transform: translateX(100%); }
+}
+@keyframes moveToRight {
+	from { }
+	to { -webkit-transform: translateX(100%); transform: translateX(100%); }
+}
+
+@-webkit-keyframes moveFromRight {
+	from { -webkit-transform: translateX(100%); }
+}
+@keyframes moveFromRight {
+	from { -webkit-transform: translateX(100%); transform: translateX(100%); }
+}
+
 .moveToTop {
 	-webkit-animation: moveToTop 1s ease both !important;
 	animation: moveToTop 1s ease both !important;
@@ -66,13 +118,13 @@
 }
 
 .moveFromTop {
-	-webkit-animation: moveFromTop .6s ease both;
-	animation: moveFromTop .6s ease both;
+	-webkit-animation: moveFromTop 1s ease both;
+	animation: moveFromTop 1s ease both;
 }
 
 .moveToBottom {
-	-webkit-animation: moveToBottom .6s ease both;
-	animation: moveToBottom .6s ease both;
+	-webkit-animation: moveToBottom 1s ease both;
+	animation: moveToBottom 1s ease both;
 }
 
 @-webkit-keyframes moveFromTop {
